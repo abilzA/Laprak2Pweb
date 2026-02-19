@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Universitas Bengkulu - Beranda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6 (untuk ikon modern) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts (font modern) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    
+    /* Hero Section dengan overlay modern */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+    
+    /* Background dengan efek parallax dan overlay gradient */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('unib.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      filter: brightness(0.7);
+      z-index: -2;
+    }
+    
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0,51,102,0.8) 0%, rgba(0,102,204,0.6) 100%);
+      z-index: -1;
+    }
+    
+    /* Animasi fade in untuk konten hero */
+    .hero-content {
+      animation: fadeInUp 1.5s ease;
+      padding: 0 20px;
+      max-width: 900px;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Styling Navbar modern */
+    .navbar {
+      background: rgba(10, 25, 47, 0.95) !important;
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .navbar.scrolled {
+      padding: 10px 0;
+      background: rgba(10, 25, 47, 0.98) !important;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 1.5rem;
+    }
+    
+    .navbar-brand img {
+      border: 3px solid rgba(255,255,255,0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .navbar-brand:hover img {
+      transform: scale(1.05);
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      margin: 0 10px;
+      position: relative;
+      color: white !important;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #00d4ff;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 70%;
+    }
+    
+    .nav-link.active {
+      color: #00d4ff !important;
+    }
+    
+    /* Styling untuk judul hero */
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 2px;
+    }
+    
+    .hero .lead {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+    
+    /* Styling button modern */
+    .btn-modern {
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #00d4ff, #0077be);
+      border: none;
+      color: white;
+      box-shadow: 0 8px 20px rgba(0,212,255,0.3);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-modern::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-modern:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,212,255,0.4);
+      background: linear-gradient(45deg, #0077be, #00d4ff);
+    }
+    
+    .btn-modern:hover::before {
+      left: 100%;
+    }
+    
+    /* Efek tambahan untuk mempercantik */
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .shape {
+      position: absolute;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      animation: float 20s infinite;
+    }
+    
+    .shape1 {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    
+    .shape2 {
+      width: 300px;
+      height: 300px;
+      bottom: 10%;
+      right: 5%;
+      animation-delay: 5s;
+    }
+    
+    .shape3 {
+      width: 150px;
+      height: 150px;
+      top: 50%;
+      left: 80%;
+      animation-delay: 10s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-50px) rotate(180deg);
+      }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero .lead {
+        font-size: 1.3rem;
+      }
+      
+      .btn-modern {
+        padding: 12px 30px;
+        font-size: 1rem;
+      }
+      
+      .navbar {
+        padding: 10px 0;
+      }
+    }
+    
+    /* Badge atau elemen dekoratif */
+    .welcome-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating shapes untuk background -->
+<div class="floating-shapes">
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+  <div class="shape shape3"></div>
+</div>
+
+<!-- Navbar modern dengan efek scroll -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="logo-unib.png" 
+           alt="Logo UNIB" 
+           width="50" 
+           height="50"
+           class="rounded-circle me-3">
+      <span class="fs-4">Universitas Bengkulu</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">
+            <i class="fas fa-home me-1"></i>Beranda
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tentang.html">
+            <i class="fas fa-info-circle me-1"></i>Tentang
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="jurusan.html">
+            <i class="fas fa-graduation-cap me-1"></i>Jurusan
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="kontak.html">
+            <i class="fas fa-envelope me-1"></i>Kontak
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section Modern -->
+<div class="hero">
+  <div class="hero-content">
+    <span class="welcome-badge">
+      <i class="fas fa-university me-2"></i>Kampus Unggulan
+    </span>
+    <h1 class="display-4 fw-bold">
+      Selamat Datang di<br>
+      <span style="background: linear-gradient(45deg, #00d4ff, #ffffff); 
+                   -webkit-background-clip: text; 
+                   -webkit-text-fill-color: transparent;">
+        Website KampusKu
+      </span>
+    </h1>
+    <p class="lead">
+      <i class="fas fa-map-pin me-2"></i>Universitas Bengkulu
+    </p>
+    <p class="mb-4" style="font-size: 1.2rem; opacity: 0.9;">
+      Membangun Generasi Unggul, Berkarakter, dan Berwawasan Global
+    </p>
+    <a href="tentang.html" class="btn btn-modern">
+      <i class="fas fa-arrow-right me-2"></i>Jelajahi Kampus
+    </a>
+    
+    <!-- Statistik singkat (opsional, untuk kesan modern) -->
+    <div class="row mt-5 pt-4 g-4" style="max-width: 800px; margin: 0 auto;">
+      <div class="col-4">
+        <div class="text-center">
+          <h3 class="fw-bold mb-0">20+</h3>
+          <small>Program Studi</small>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="text-center">
+          <h3 class="fw-bold mb-0">5000+</h3>
+          <small>Mahasiswa Aktif</small>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="text-center">
+          <h3 class="fw-bold mb-0">300+</h3>
+          <small>Dosen Ahli</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script untuk efek navbar scroll -->
+<script>
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('mainNav');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
+
+</body>
+</html>
